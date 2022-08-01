@@ -37,3 +37,27 @@ A Sequential model is not appropriate when:
 * any of the layers has multiple input or multiple outputs
 * we nedd to do layer sharing
 * we want non-linear topology(e.g. a residual connection, a multi-branch model)
+
+#### **Creating a Sequential Model**
+
+We can create a Sequential model by passing a list of layers to the Sequential constructor:
+```
+model = keras.Sequential([
+    layers.Dense(2, activation='relu'),
+    layers.Dense(3, activation='relu'),
+    layers.Dense(4),
+])
+```
+We can also create a Sequential model incrementally via the `add()` method:
+```
+model = keras.Sequential()
+model.add(layers.Dense(2, activation='relu')),
+model.add(layers.Dense(3, activation='relu')),
+model.add(layers.Dense(2),
+```
+Also note that- the Sequential constructor accepts a `name` argument, just like any layer or model in Keras. This is useful to annotate TensorBoard grphs with semantically meaningfull names:
+```
+model = keras.Sequential(name='my_sequential_model')
+model.add(layers.Dense(2, activation='relu', name='layer1')),
+model.add(layers.Dense(3, activation='relu', name='layer2')),
+model.add(layers.Dense(2, name='layer3'),
