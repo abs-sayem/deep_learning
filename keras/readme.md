@@ -65,7 +65,7 @@ for inputs, targets in dataset:
     optimizer.apply_gradients(zip(gradients, model.trainable_weights))
 ```
 #### Installation and Compatibility
-Keras comes packaged with Tensorflow 2 as `tensorflow.keras`. To start using Keras, simply install Tensorflow 2 using the command `pip install tensorflow`.
+Keras comes packaged with Tensorflow 2 as `tensorflow.keras`. To start using Keras, simply install Tensorflow 2 using the command `pip install tensorflow`. Once Tensorflow is installed, just import Keras via `from tensorflow import keras`. Keras codebase is also available on Github: https://github.com/keras-team/keras.git
 
 Keras/Tensorflow are compatible with:
 * Python 3.7 or above
