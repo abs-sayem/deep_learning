@@ -60,4 +60,15 @@ Also note that- the Sequential constructor accepts a `name` argument, just like 
 model = keras.Sequential(name='my_sequential_model')
 model.add(layers.Dense(2, activation='relu', name='layer1')),
 model.add(layers.Dense(3, activation='relu', name='layer2')),
-model.add(layers.Dense(2, name='layer3'),
+model.add(layers.Dense(4, name='layer3'),
+```
+#### **Specifying the Input Shape in Advance**
+
+Generally, all layers in Keras need to know the shape of their inputs in order to be able to create their weights. So, when we create a layer like this, initially it has no weights:
+```
+layers = layers.Dense(2)
+layers.weights  # Empty
+```
+It creates its weights the first time it is called on an input, since the shape of the weights depends on the shape of the inputs. Naturally, when we instantiate a Sequential model without an input, it isn't built and calling `model.weights` results an error. The weights are created when the model first sees some input data.
+
+**Giving Input Shape:** 
