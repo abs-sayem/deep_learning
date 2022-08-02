@@ -6,7 +6,7 @@
 
 Here is the sequential model---
 ```
-from tensorflow.keras,models import Sequential
+from tensorflow.keras.models import Sequential
 
 model = Sequential()
 ```
@@ -23,7 +23,7 @@ model.compile(loss='categorical_crossentropy',
               optimizer='sgd',
               metrics=['accuracy'])
 ```
-We can further configure the optimizer. The Keras philosophy is to keep things simple also allowing users to be fully in control when need bia subclassing.
+We can further configure the optimizer. The Keras philosophy is to keep things simple also allowing users to be fully in control when need via subclassing.
 ```
 model.compile(loss=keras.losses.categorical_crossentropy,
               optimizer=keras.optimizers.SGD(learning_rate=0.01, momentum=0.9, nesterov=True))
