@@ -165,3 +165,17 @@ feature_extractor = keras.Model(
 x = tf.ones((1, 250, 250, 3))
 features = feature_extractor(x)
 ```
+
+#### **Transfer Learning with a Sequential Model**
+Transfer learning consists of freezing the bottom layers in a model and only training the top layers. Let's have a look two common transfer learning blueprint involving Sequential models.
+
+First, let's assume that we have a Sequential model and we want to freeze all layers except the last one. In this case, we would simply iterate over `model.layers` and set `layer.trainable=False` on each layer, except the last layer:
+```
+model = kares.Sequential([
+    keras.Input(shape=(784)),
+    layers.Dense(32, activation='relu'),
+    layers.Dense(32, activation='relu'),
+    layers.Dense(32, activation='relu'),
+    layers.Dense(10),
+])
+```
