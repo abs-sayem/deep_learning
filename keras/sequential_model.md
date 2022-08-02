@@ -85,4 +85,41 @@ A simple alternative is to just pass an `input_shape` argument to the first laye
 model = keras.Sequential()
 model.add(layers.Dense(2, activation='relu', input_shape=(4,)))
 ```
-> *Models built with a predefined input shape like this always have weghts(even before seeing any data) and always have a defined output shape. In general, it's recommended best practice to always specify the input shape of a Sequential model in advance if you know what it is.*
+*Models built with a predefined input shape like this always have weghts(even before seeing any data) and always have a defined output shape. In general, it's recommended best practice to always specify the input shape of a Sequential model in advance if you know what it is.*
+
+#### What to do after we have a model
+Once our model architecture is ready-
+* train the model, evaluate it and run inference
+* save the model to local disk and store it
+* speed up model training by leveraging multiple GPUs
+
+#### A Common Debugging Workflow (A CNN Persfective)
+When building a new Sequential architecture, it's useful to incrementally stack layers with `add()` and frequently print model summaries. For instance, this enables us to monitor how a stack od `conv2D` and `MaxPooling2D` layers is downsampling image feature maps:
+```
+model = keras.Sequential()
+model.add(keras.Input(shape=(250, 250, 3)))                     # 250x250 RGB images
+model.add(layers.Conv2D(32, 5, strides=2, activation='relu'))   # (123, 123, 32)
+model.add(layers.Conv2D(32, 3, activation='relu'))              # (121, 121, 32)
+model.add(layers.MaxPooling2D(3))                               # (40, 40, 32)
+
+# Can we guess what the current output shape is at this point?
+# Let's just print it-
+model.summary()     # The shape is: (40, 40, 32) downsampled 250 to 40
+
+# We can keep downsampling ...
+model.add(layers.Conv2D(32, 3, activation='relu'))  # (38, 38, 32)
+model.add(layers.Conv2D(32, 3, activation='relu'))  # (36, 36, 32)
+model.add(layers.MaxPooling2D(3))                   # (12, 12, 32)
+model.add(layers.Conv2D(32, 3, activation='relu'))  # (10, 10, 32)
+model.add(layers.Conv2D(32, 3, activation='relu'))  # (8, 8, 32)
+model.add(layers.MaxPooling2D(3))                   # (4, 4, 32)
+
+# And now let's see the output shape
+model.summary()     # Output Shape: (4, 4, 32)
+
+# Now we can apply Global MaxPooling
+model.add(layers.GlobalMaxPooling2D())
+
+# Finally, add a classification layer
+model.add(layers.Dense(10))
+```
