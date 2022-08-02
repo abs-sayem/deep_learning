@@ -126,3 +126,22 @@ model.add(layers.Dense(10))
 
 #### Feature Extraction with a Sequential Model
 Once a Sequential model has been build, it behaves liake a **Functial API Model**. This means- evaery layer has an `input` and `output` attribute This attribute can be used- to quickly creating a model that extracts the outputs of all intermediate layers in a Sequential model:
+```
+# Build a Sequential Model
+initial_model = keras.Sequential([
+    keras.Input(shape=(250, 250, 3)),
+    layers.Conv2D(32, 5, strides=2, activation='relu'),
+    layers.Conv2D(32, 3, activation='relu'),
+    layers.Conv2D(32, 3, activation='relu'),
+])
+
+# Create a Feature Extractor
+feature_extractor = keras.Model(
+    inputs = initial_model.input,
+    outputs = [layer.output for layer in initial_model.layers],
+)
+
+# Call the feature extractor on test input
+x = tf.ones((1, 250, 250, 3))
+features = feature_extractor(x)
+```
