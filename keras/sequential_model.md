@@ -71,4 +71,18 @@ layers.weights  # Empty
 ```
 It creates its weights the first time it is called on an input, since the shape of the weights depends on the shape of the inputs. Naturally, when we instantiate a Sequential model without an input, it isn't built and calling `model.weights` results an error. The weights are created when the model first sees some input data.
 
-**Giving Input Shape:** 
+**Giving Input Shape:**
+##### **Using `input` Object:**
+We should start our model by passing an `input` object to the model, so that it knows its input shape from the beginning:
+```
+model = keras.Sequential()
+model.add(keras.Input(shape=(4,)))
+model.add(layers.Dense(2, activation='relu'))
+```
+##### **Using `input_shape` Argument:**
+A simple alternative is to just pass an `input_shape` argument to the first layer:
+```
+model = keras.Sequential()
+model.add(layers.Dense(2, activation='relu', input_shape=(4,)))
+```
+> *Models built with a predefined input shape like this always have weghts(even before seeing any data) and always have a defined output shape. In general, it's recommended best practice to always specify the input shape of a Sequential model in advance if you know what it is.*
