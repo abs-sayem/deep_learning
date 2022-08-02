@@ -24,9 +24,9 @@ y = model(x)
 is equivalent to this function:
 ```
 # Create 3 layers
-layer1 = layers.Dense(2, activation='relu', name='layer1'),
-layer2 = layers.Dense(3, activation='relu', name='layer2'),
-layer3 = layers.Dense(2, name='layer3'),
+layer1 = layers.Dense(2, activation='relu', name='layer1')
+layer2 = layers.Dense(3, activation='relu', name='layer2')
+layer3 = layers.Dense(2, name='layer3')
 
 # Call layers on a test input
 x = tf.ones((3,3))
