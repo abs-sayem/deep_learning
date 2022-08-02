@@ -123,3 +123,6 @@ model.add(layers.GlobalMaxPooling2D())
 # Finally, add a classification layer
 model.add(layers.Dense(10))
 ```
+
+#### Feature Extraction with a Sequential Model
+Once a Sequential model has been build, it behaves liake a **Functial API Model**. This means- evaery layer has an `input` and `output` attribute This attribute can be used- to quickly creating a model that extracts the outputs of all intermediate layers in a Sequential model:
