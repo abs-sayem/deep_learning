@@ -51,16 +51,16 @@ model = keras.Sequential([
 We can also create a Sequential model incrementally via the `add()` method:
 ```
 model = keras.Sequential()
-model.add(layers.Dense(2, activation='relu')),
-model.add(layers.Dense(3, activation='relu')),
-model.add(layers.Dense(2),
+model.add(layers.Dense(2, activation='relu'))
+model.add(layers.Dense(3, activation='relu'))
+model.add(layers.Dense(2))
 ```
 Also note that- the Sequential constructor accepts a `name` argument, just like any layer or model in Keras. This is useful to annotate TensorBoard grphs with semantically meaningfull names:
 ```
 model = keras.Sequential(name='my_sequential_model')
-model.add(layers.Dense(2, activation='relu', name='layer1')),
-model.add(layers.Dense(3, activation='relu', name='layer2')),
-model.add(layers.Dense(4, name='layer3'),
+model.add(layers.Dense(2, activation='relu', name='layer1'))
+model.add(layers.Dense(3, activation='relu', name='layer2'))
+model.add(layers.Dense(4, name='layer3'))
 ```
 #### **Specifying the Input Shape in Advance**
 
