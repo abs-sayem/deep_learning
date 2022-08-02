@@ -94,7 +94,7 @@ Once our model architecture is ready-
 * speed up model training by leveraging multiple GPUs
 
 #### A Common Debugging Workflow (A CNN Persfective)
-When building a new Sequential architecture, it's useful to incrementally stack layers with `add()` and frequently print model summaries. For instance, this enables us to monitor how a stack od `conv2D` and `MaxPooling2D` layers is downsampling image feature maps:
+When building a new Sequential architecture, it's useful to incrementally stack layers with `add()` and frequently print model summaries. For instance, this enables us to monitor how a stack of `conv2D` and `MaxPooling2D` layers is downsampling image feature maps:
 ```
 model = keras.Sequential()
 model.add(keras.Input(shape=(250, 250, 3)))                     # 250x250 RGB images
