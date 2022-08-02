@@ -178,4 +178,15 @@ model = kares.Sequential([
     layers.Dense(32, activation='relu'),
     layers.Dense(10),
 ])
+
+# More likely, we would wnat to first load pre-trained weights
+model.load_weights(...)
+
+# Freeze all layers except the last one
+for layer in model.layers[:-1]:
+    layer.trainable = False
+
+# Recompile and Train: It will only update the weights of the last layer
+model.compile(...)
+model.fit(...)
 ```
