@@ -1,5 +1,5 @@
 ## **The Functional API**
-**Author:** Abs Sayem<br>
+**Author:** [Abs Sayem](https://github.com/abs-sayem)<br>
 **Date Created:** 2022/08/02<br>
 **Last Modified:** 2022/08/03<br>
 **Description:** Guide to the Functional API
