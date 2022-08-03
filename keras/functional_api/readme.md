@@ -58,7 +58,7 @@ model.summary()
 keras.utils.plot_model(model, "mnist_model_info.png", show_shapes=True)
 ```
 
-### **Training Evaluation and Inference(Test)**
+### **Training Evaluation and Inference**
 ###### **Training, Evaluation and Inference work exactly in the same way for models built using functional api as for `sequential` models.<br>The `model` class offers a built-in training loop(the `fit()` method) and a built-in evaluation loop(the `evaluate()` method). We can easily [customize these loops](https://keras.io/guides/customizing_what_happens_in_fit/).**
 ###### **Let's load the MNIST image data, reshape it inro vectors, fit the model on the data and then evaluate the model on the test data:**
 ```
@@ -66,14 +66,14 @@ keras.utils.plot_model(model, "mnist_model_info.png", show_shapes=True)
 (x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
 
 # Reshape the data (Normalization)
-x_train = x_train.reshape(60000, 784).astype("flote32")/255
-x_test = x_test.reshape(10000, 784).astype("flote32")/255
+x_train = x_train.reshape(60000, 784).astype("float32")/255
+x_test = x_test.reshape(10000, 784).astype("float32")/255
 
 # Compile the model
 model.compile(
         loss = keras.losses.SparseCategoricalCrossentropy(from_logits=True),
         optimizer = keras.optimizers.RMSprop(),
-        metrices = ["accuracy"]
+        metrics = ["accuracy"]
 )
 
 # Fit the model to data
