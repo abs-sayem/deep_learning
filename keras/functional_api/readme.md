@@ -1,8 +1,8 @@
 ### **The Functional API**
-**Author:**Abs Sayem
-**Date Created:** 2022/08/02
-**Last Modified:** 2022/08/03
-**Description:** Guide to Functional API
+**Author:** Abs Sayem<br>
+**Date Created:** 2022/08/02<br>
+**Last Modified:** 2022/08/03<br>
+**Description:** Guide to the Functional API
 
 #### **Setup**
 ```
