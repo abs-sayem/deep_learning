@@ -32,7 +32,7 @@ from tensorflow.keras import layers
 ```
 inputs = keras.Input(shape=(784,))
 # If, for example we have an image input with a shape of (32,32,3), we would use
-img_inputs = keras.Input(shape(32,32,3))
+img_inputs = keras.Input(shape=(32,32,3))
 # We can check out the shape and data type
 inputs.shape
 inputs.dtype
