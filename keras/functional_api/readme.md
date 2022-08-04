@@ -111,7 +111,7 @@ x = layers.Conv2D(16, 3, activation='relu')(x)
 encoder_output = layers.GlobalMaxPooling2D()(x)
 
 # Define decoder output
-x = layers.Reshape(4, 4, 1)(encoder_output)
+x = layers.Reshape((4, 4, 1))(encoder_output)
 x = layers.Conv2DTranspose(16, 3, activation='relu')(x)
 x = layers.Conv2DTranspose(32, 3, activation='relu')(x)
 x = layers.UpSampling2D(3)(x)
