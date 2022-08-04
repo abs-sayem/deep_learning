@@ -127,3 +127,58 @@ autoencoder = keras.Model(encoder_input, decoder_output, name='autoencoder')
 autoencoder.summary()
 ```
 *Here, the decoding architecture is symmetrical to the encoding architecture, so the output shape is the same as the input shape(28, 28, 1).<br>The reverse of a `Conv2d` layer is `Conv2DTranspose` layer and the reverse of a `MaxPooling2D` layer is `UpSampling2D` layer.*
+
+### **All Models are Callable, just like Layers**
+###### **We can treat a model as a layer by calling it on an `Input` or on the output of another layer. When we call a model we aren't just reusing the architecture of the model, we also reuses its weights.<br>Here, we create an encoder model, a decoder model and chains to them in twp calls to obtain the autoencoder model.**
+```
+# Define encoder input output
+encoder_input = keras.Input(shape=(28, 28, 1), name='original_img')
+x = layers.Conv2D(16, 3, activation='relu')(encoder_input)
+x = layers.Conv2D(32, 3, activation='relu')(x)
+x = layers.MaxPooling2D(3)(x)
+x = layers.Conv2D(32, 3, activation='relu')(x)
+x = layers.Conv2D(16, 3, activation='relu')(x)
+encoder_output = layers.GlobalMaxPooling2D()(x)
+
+# Define decoder input output
+decoder_input = keras.Input(shape=(16,), name='encoded_img')
+x = layers.Reshape(4, 4, 1)(decoder_input)
+x = layers.Conv2DTranspose(16, 3, activation='relu')(x)
+x = layers.Conv2DTranspose(32, 3, activation='relu')(x)
+x = layers.UpSampling2D(3)(x)
+x = layers.Conv2DTranspose(16, 3, activation='relu')(x)
+decoder_output = layers.Conv2DTranspose(1, 3, activation='relu')(x)
+
+# Create Encoder
+encoder = keras.Model(encoder_input, encoder_output, name='encoder')
+encoder.summary()
+
+# Create Decoder
+autoencoder = keras.Model(decoder_input, decoder_output, name='decoder')
+autoencoder.summary()
+
+# Create Autoencoder
+autoencoder_input = keras.Input(shape=(28, 28, 1), name='img')
+encoded_img = encoder(autoencoder_input)
+decoded_img = decoder(encoded_img)
+autoencoder = keras.Model(autoencoder_input, decoded_img, name='autoencoder')
+autoencoder.summary()
+```
+###### **As we see, the model can be nested: a model can contain sub-models. A common case for model nesting is `ensembling`. Here is how to ensemble a set of models into a single model that averages their predictions:**
+```
+def getModel():
+    inputs = keras.Input(shape=(128,))
+    outputs = layers.Dense(1)(inputs)
+    return(keras.Model(inputs, outputs))
+
+model1 = getModel()
+model2 = getModel()
+model3 = getModel()
+
+inputs = keras.Input(shape=(128,))
+y1 = model1(inputs)
+y2 = model2(inputs)
+y3 = model3(inputs)
+outputs = layers.average([y1, y2, y3])
+ensemble_model = keras.Model(inputs=inputs, outputs=outputs)
+```
