@@ -97,3 +97,33 @@ del model
 model = keras.models.load_model("model_name")
 ```
 *For more details, read the model [serialization and saving](https://keras.io/guides/serialization_and_saving/) guide.*
+
+### Use the same Graph of Layers to define Multiple Models
+###### **In the functional API, models are created by specifying their inputs and outputs in a graph of layers. That means- a single graph of layers can be used to generate multiple models.<br>In the example below, we use the same stack of layers to instantiate two models: an `encoder` model that turns image inputs into 16-dimensional vectors, and an end-to-end `autoencoder` model for training.**
+```
+# Define encoder input output
+encoder_input = keras.Input(shape=(28, 28, 1), name='img')
+x = layers.Conc2D(16, 3, activation='relu')(encoder_input)
+x = layers.Conc2D(32, 3, activation='relu')(x)
+x = layer.MaxPooling2D(3)(x)
+x = layers.Conc2D(32, 3, activation='relu')(x)
+x = layers.Conc2D(16, 3, activation='relu')(x)
+encoder_output = layers.GlobalMaxPooling2D()(x)
+
+# Define decoder output
+x = layers.reshape(4, 4, 1)(encoder_output)
+x = layers.Conv2DTranspose(16, 3, activation='relu')(x)
+x = layers.Conv2DTranspose(32, 3, activation='relu')(x)
+x = layers.UpSampling2D(3)(x)
+x = layers.Conv2DTranspose(16, 3, activation='relu')(x)
+decoder_output = layers.Conv2DTranspose(1, 3, activation='relu')(x)
+
+# Create Encoder
+encoder = keras.Model(encoder_input, encoder_output, name='encoder')
+encoder.summary()
+
+# Create Autoencoder
+autoencoder = keras.Model(encoder_input, decoder_output, name='autoencoder')
+autoencoder.summary()
+```
+*Here, the decoding architecture is symmetrical to the encoding architecture, so the output shape is the same as the input shape(28, 28, 1).<br>The reverse of a `Conv2d` layer is `Conv2DTranspose` layer and the reverse of a `MaxPooling2D` layer is `UpSampling2D` layer.*
