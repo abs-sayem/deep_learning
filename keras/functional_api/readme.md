@@ -142,7 +142,7 @@ encoder_output = layers.GlobalMaxPooling2D()(x)
 
 # Define decoder input output
 decoder_input = keras.Input(shape=(16,), name='encoded_img')
-x = layers.Reshape(4, 4, 1)(decoder_input)
+x = layers.Reshape((4, 4, 1))(decoder_input)
 x = layers.Conv2DTranspose(16, 3, activation='relu')(x)
 x = layers.Conv2DTranspose(32, 3, activation='relu')(x)
 x = layers.UpSampling2D(3)(x)
@@ -154,8 +154,8 @@ encoder = keras.Model(encoder_input, encoder_output, name='encoder')
 encoder.summary()
 
 # Create Decoder
-autoencoder = keras.Model(decoder_input, decoder_output, name='decoder')
-autoencoder.summary()
+decoder = keras.Model(decoder_input, decoder_output, name='decoder')
+decoder.summary()
 
 # Create Autoencoder
 autoencoder_input = keras.Input(shape=(28, 28, 1), name='img')
