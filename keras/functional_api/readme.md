@@ -98,7 +98,7 @@ model = keras.models.load_model("model_name")
 ```
 *For more details, read the model [serialization and saving](https://keras.io/guides/serialization_and_saving/) guide.*
 
-### Use the same Graph of Layers to define Multiple Models
+### **Use the same Graph of Layers to define Multiple Models**
 ###### **In the functional API, models are created by specifying their inputs and outputs in a graph of layers. That means- a single graph of layers can be used to generate multiple models.<br>In the example below, we use the same stack of layers to instantiate two models: an `encoder` model that turns image inputs into 16-dimensional vectors, and an end-to-end `autoencoder` model for training.**
 ```
 # Define encoder input output
