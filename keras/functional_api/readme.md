@@ -84,3 +84,16 @@ test_scores = model.evaluate(x_test, y_test, verbose=1)
 print("Test Loss:", test_scores[0])
 print("Test Accuracy:", test_scores[1])
 ```
+*For more details, see the [training and evaluation](https://keras.io/guides/making_new_layers_and_models_via_subclassing/) guide.*
+
+### **Save and Serialize**
+###### **The standard way to save a model is to call `model.save()` to save the entire model as a single file. We can later create the same model from this file even if the model is no longer available.<br>This saved files includes- model architecture, model weight values(that are learned during training), model training config, optimizers and its state.**
+```
+# Save and then delete the model
+model.save("model_name")
+del model
+
+# Recreate the same model from the file:
+model = keras.models.load_model("model_name")
+```
+*For more details, read the model [serialization and saving](https://keras.io/guides/serialization_and_saving/) guide.*
