@@ -233,3 +233,19 @@ model = keras.Model(
         outputs=[priority_pred, department_pred],
 )
 ```
+###### **To plot the model:**
+```
+keras.utils.plot_model(model, "multi_input_and_output_model.png", show_shapes=True)
+```
+###### **When compiling this model, we can assign different losses to each output. We can also assign different weights to each loss- to modulate their contribution to the total training loss.**
+```
+model.compile(
+        optimizer = keras.optimizers.RMSprop(1e-3),
+        loss = [
+                keras.losses.BinaryCrossentropy(from_logits=True),
+                keras.losses.CategoricalCrossentropy(from_logits=True),
+        ],
+        loss_weights = [1.0, 0.2],
+)
+```
+###### **Since the output layers have different names, we could also specify the losses and loss weights with the corresponding layer names:**
