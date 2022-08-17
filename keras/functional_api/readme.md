@@ -182,3 +182,13 @@ y3 = model3(inputs)
 outputs = layers.average([y1, y2, y3])
 ensemble_model = keras.Model(inputs=inputs, outputs=outputs)
 ```
+
+### **Manipulate Complex Graph Topologies**
+**Models with multiple inputs and outputs**
+###### **The functional api makes it easy to manipulate inputs and outputs but Seqiential API does not.<br>For example, if we build a system for ranking customer issue tickets by priority and routing them to the correct department, then the model will have three input-**
+* ###### **the title of the ticket(text input)**
+* ###### **the text body of the ticket(text input)**
+* ###### **any tags added by the user(categorical input)**
+###### **The model will have two outputs-**
+* ###### **the priority score between 0 and 1 (scalar sigmoid output) and**
+* ###### **the department that should handle the ticket (softmax output over the set of departments).**
