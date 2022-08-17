@@ -249,3 +249,32 @@ model.compile(
 )
 ```
 ###### **Since the output layers have different names, we could also specify the losses and loss weights with the corresponding layer names:**
+```
+model.compile(
+        optimizer = keras.optimizers.RMSprop(1e-3),
+        loss = [
+                keras.losses.BinaryCrossentropy(from_logits=True),
+                keras.losses.CategoricalCrossentropy(from_logits=True),
+        ],
+        loss_weights = {"priority":1.0, "department":0.2},
+)
+```
+###### **Train the model by passing lists of NumPy arrays of inputs and targets:**
+```
+# Dummy input data
+title_data = np.random.randint(num_words, size=(1280, 10))
+body_data = np.random.randint(num_words, size=(1280, 100))
+tags_data = np.random.randint(2, size=(1280, num_tags)).astype("float32")
+
+# Dummy target data
+priority_targets = np.random.randint(size=(1280, 1))
+dept_targets = np.random.randint(2, size=(1280, num_departments))
+
+model.fit(
+        {"title": title_data, "body": body_data, "tags": tags_data},
+        {"priority": priority_targets, "departments": dept_targets},
+        epochs = 2,
+        batch_size = 32,
+)
+```
+*When calling fit with a `Dataset` object, it should yield either a tuple of lists like `([title_data, body_data, tags_data], [priority_targets, dept_targets])` or a tuple of dictionaries like`({'title': title_data, 'body': body_data, 'tags': tags_data}, {'priority': priority_targets, 'department': dept_targets})`.*
