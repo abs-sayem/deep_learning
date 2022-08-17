@@ -230,6 +230,6 @@ department_pred = layers.Dense(num_departments, name="department")(x)
 # Instantiate an end-to-end model predicting both priority and department
 model = keras.Model(
         inputs=[title_input, body_input, tags_input],
-        outputs = [priority_pred, department_pred],
+        outputs=[priority_pred, department_pred],
 )
 ```
