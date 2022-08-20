@@ -252,10 +252,10 @@ model.compile(
 ```
 model.compile(
         optimizer = keras.optimizers.RMSprop(1e-3),
-        loss = [
-                keras.losses.BinaryCrossentropy(from_logits=True),
-                keras.losses.CategoricalCrossentropy(from_logits=True),
-        ],
+        loss = {
+                "priority": keras.losses.BinaryCrossentropy(from_logits=True),
+                "department": keras.losses.CategoricalCrossentropy(from_logits=True),
+        },
         loss_weights = {"priority":1.0, "department":0.2},
 )
 ```
