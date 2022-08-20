@@ -278,3 +278,29 @@ model.fit(
 )
 ```
 *When calling fit with a `Dataset` object, it should yield either a tuple of lists like `([title_data, body_data, tags_data], [priority_targets, dept_targets])` or a tuple of dictionaries like`({'title': title_data, 'body': body_data, 'tags': tags_data}, {'priority': priority_targets, 'department': dept_targets})`.*
+
+**A ResNet Model**
+###### **in addition to models with multiple inputs and outputs, the functional API makes it easy to manipulate non-linear connectivity topologies -- there are models with layers that are not connected sequentially, which the `Sequential` API cannot handle.<br>A common use case for this is residual connections. Let's build a toy ResNet model for CIFAR10 dataset to demonstrate this:**
+```
+inputs = keras.Input(shape=(32, 32, 3), name="img")
+x = layers.Conv2D(32, 3, activation="relu")(inputs)
+x = layers.Conv2D(64, 3, activation="relu")(x)
+block_1_output = layers.MaxPooling2D(3)(x)
+
+x = layers.Conv2D(64, 3, activation="relu", padding="same")(block_1_output)
+x = layers.Conv2D(64, 3, activation="relu", padding="same")(x)
+block_2_output = layers.add([x, block_1_output])
+
+x = layers.Conv2D(64, 3, activation="relu", padding="same")(block_2_output)
+x = layers.Conv2D(64, 3, activation="relu", padding="same")(x)
+block_3_output = layers.add([x, block_2_output])
+
+x = layers.Conv2D(64, 3, activation="relu", padding="same")(block_2_output)
+x = layers.GlobalAveragePooling2D()(x)
+x = layers.Dense(256, activation="relu")(x)
+x = layers.Dropout(0.5)(x)
+outputs = layers.Dense(10)(x)
+
+model = keras.Model(inputs, outputs, name="toy_resnet")
+model.summary()
+```
