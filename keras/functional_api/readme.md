@@ -267,12 +267,12 @@ body_data = np.random.randint(num_words, size=(1280, 100))
 tags_data = np.random.randint(2, size=(1280, num_tags)).astype("float32")
 
 # Dummy target data
-priority_targets = np.random.randint(size=(1280, 1))
+priority_targets = np.random.random(size=(1280, 1))
 dept_targets = np.random.randint(2, size=(1280, num_departments))
 
 model.fit(
         {"title": title_data, "body": body_data, "tags": tags_data},
-        {"priority": priority_targets, "departments": dept_targets},
+        {"priority": priority_targets, "department": dept_targets},
         epochs = 2,
         batch_size = 32,
 )
