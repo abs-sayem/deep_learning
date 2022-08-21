@@ -325,3 +325,23 @@ model.compile(
 # We restrict the data to the first 10000 samples so as to limit execution time
 model.fit(x_train[:10000], y_train[:10000], batch_size=64, epochs=5, validation_split=0.2)
 ```
+
+### **Shared Layers**
+###### **Shared layers are layer instances that are reused multiple times in the same model -- they learn features that correspond to multiple paths in the graph-of-layers.<br>Shared layers are often used to encode input from similar spaces(say, two different pieces of text that feature similar vocabulary). They enable sharing of information across these diferent inputs, and make it possible to train such a model on less data.**
+###### **To share a layer in the functional API, call the same layer instance multiple times. For instance, here's an `Embedding` layer shared across two different text inputs:**
+```
+# Embedding for 1000 unique words mapped to 128-dimensional vectors
+from turtle import shape
+
+
+shared_embedding = layers.Embedding(1000, 128)
+
+# Variable-length sequence of integers
+text_input1 = keras.Input(shape=(None,), dtype="int32")
+# Variable-length sequence of integers
+text_input2 = keras.Input(shape=(None,), dtype="int32")
+
+# Re-use the same layer to encode both inputs
+encoded_input1 = shared_embedding(text_input1)
+encoded_input2 = shared_embedding(text_input2)
+```
