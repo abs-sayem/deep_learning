@@ -308,3 +308,20 @@ model.summary()
 ```
 keras.utils.plot_model(model, "mini_resnet.png", show_shapes=True)
 ```
+###### **Now, train the model:**
+```
+(x_train, y_train), (x_test, y_test) = keras.datasets.cifar10.load_data()
+
+x_train = x_train.astype("float32")/255.0
+x_test = x_test.astype("float32")/255.0
+y_train = keras.utils.to_categorical(y_train, 10)
+y_test = keras.utils.to_categorical(y_test, 10)
+
+model.compile(
+    optimizer = keras.optimizers.RMSprop(1e-3),
+    loss = keras.losses.CategoricalCrossentropy(from_logits=True),
+    metrics = ["accuracy"],
+)
+# We restrict the data to the first 10000 samples so as to limit execution time
+model.fit(x_train[:10000], y_train[:10000], batch_size=64, epochs=5, validation_split=0.2)
+```
