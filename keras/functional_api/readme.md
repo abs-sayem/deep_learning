@@ -345,3 +345,20 @@ text_input2 = keras.Input(shape=(None,), dtype="int32")
 encoded_input1 = shared_embedding(text_input1)
 encoded_input2 = shared_embedding(text_input2)
 ```
+
+### **Extract and Reuse Nodes in the Graph-of-Layers**
+###### **Because the graph of layers we are manipulating is a static data structure, it can be accessed and inspected. And this is how we are able to plot functional models as images.<br>This also means that we can access the activations of intermediate layers and reuse them elsewhere -- which is very usefull for feature extraction.**
+###### **For example, this a VGG19 model with weights pretrained on ImageNet:**
+```
+vgg19 = tf.keras.applications.VGG19()
+```
+###### **Following these are the intermediate activations of the model, obtained by querying the graph data structure:**
+```
+features_list = [layer.output for layer in vgg19.layers]
+```
+###### **Now using these features we will create a new feature_extraction model that returns the values of the intermediate layer activations:**
+```
+features_extration_model = keras.Model(inputs=vgg19.input, outputs=features_list)
+img = np.random.random((1, 224, 224, 3)).astype("float32")
+extracted_features = features_extration_model(img)
+```
