@@ -362,3 +362,15 @@ features_extration_model = keras.Model(inputs=vgg19.input, outputs=features_list
 img = np.random.random((1, 224, 224, 3)).astype("float32")
 extracted_features = features_extration_model(img)
 ```
+
+### **Extend the API Using Custom Layers**
+
+*`tf.keras` includes a wide range of built-in layers, for example:*
+* Convolutional Layers: `Conv1D`, `Conv2D`, `Conv3D`, `Conv2DTranspose`
+* Pooling Layers: `MaxPooling1D`, `MaxPooling2D`, `MaxPooling3D`, `AverageMaxpooling1D`
+* RNN Layers: `GRU`, `LSTM`, `ConvLSTM2D`
+* `BatchNormalization`, `Dropout`, `Embedding` etc.
+
+*But we also easily extend the API by creating our own layers by subclassing the `layer` class and implement:*
+* `call` method- that spacifies the computation done by the layer
+* `build` method- that creates the weights of the layer
