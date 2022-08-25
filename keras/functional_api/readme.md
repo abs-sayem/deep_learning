@@ -65,3 +65,15 @@ from tensorflow.keras import layers
 #### **Functional API Strengths**
 ###### **There are some properties that are also true for Sequential models but are not true for subclassed models:**
 **Less Berbose:** There is no `super(MyClass, self).__init__(...)`, no `def call(self, ...)` etc.**<br>
+
+### **When to Use the Functional API**
+###### **Should we use the Keras functional API to create a new model or just subclass the `Model` class directly?- In general, the functional API is higher-level, easier and safer, and has a number of features that subclassed models do not support.**
+###### **Model subclassing provides greater flexibility when building models that are not easily expressible as directed acyclic graphs of layers. For example, we could not implement a Tree-RNN with the functional API and would have to subclass `Model` directly.<br>For in-depth look at the differencrs between the functional API and model subclassing, read [What are Symbolic and Imperative APIs in Tensorflow2.0](https://blog.tensorflow.org/2019/01/what-are-symbolic-and-imperative-apis.html).<br>**
+#### **Functional API Strengths**
+###### **There are some properties that are also true for Sequential models but are not true for subclassed models:**
+* **Less Berbose:** There is no `super(MyClass, self).__init__(...)`, no `def call(self, ...)` etc.
+* **Model Validation while Defining its Connectivity Graph:** In the functional API, the input specification (shape, dtype) is created in advance(using `input`). Every time we call a layer, the layer checks that the specification passed to it matches its assumptions, and it will raise a helpful error message if not. This guarantees that any model we can build with the functional API will run.
+* **A Functional Model is Plottable and Inspectable:** We can plot the model as a graph and can easily access intermediate nodes in this graph.
+* **A Functional API can be Serialized or Cloned:** Because a functional model is a data structure rather than a piece of code, it is safely serializable and can be saved as a single file that allows us to recreate the exact same model without having access to any of the original code.<br>To serialize a subclassed model, it is necessary for the implementer to specify a `get_config()` and `from_config()` method at the model level.
+#### **Functional API Weakness**
+* **Doesn't Support Dynamic Architectures:** The functional API treats models as DAGs of layers. This is true for most of the architectures, but not for all -- for example, recursive networks ot Tree RNNs do not follow this assumption and connot be implemented in the functional API.
