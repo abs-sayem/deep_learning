@@ -77,3 +77,6 @@ from tensorflow.keras import layers
 * **A Functional API can be Serialized or Cloned:** Because a functional model is a data structure rather than a piece of code, it is safely serializable and can be saved as a single file that allows us to recreate the exact same model without having access to any of the original code.<br>To serialize a subclassed model, it is necessary for the implementer to specify a `get_config()` and `from_config()` method at the model level.
 #### **Functional API Weakness**
 * **Doesn't Support Dynamic Architectures:** The functional API treats models as DAGs of layers. This is true for most of the architectures, but not for all -- for example, recursive networks ot Tree RNNs do not follow this assumption and connot be implemented in the functional API.
+
+### **Mix-and-Match API Styles**
+###### **Choosing between the functional API and Model subclassing isn't a decision. All models in the `tf.keras` API can interect with each other, whether they're `Sequential` models, functional models, or subclassed models.<br>We can always use a `Functional` or `Sequential` model as part of a subclassed model or layer.**
