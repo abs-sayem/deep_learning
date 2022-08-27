@@ -80,3 +80,9 @@ from tensorflow.keras import layers
 
 ### **Mix-and-Match API Styles**
 ###### **Choosing between the functional API and Model subclassing isn't a decision. All models in the `tf.keras` API can interect with each other, whether they're `Sequential` models, functional models, or subclassed models.<br>We can always use a `Functional` or `Sequential` model as part of a subclassed model or layer.**
+###### **We can use any subclassed layer or model in the functional API as long as it implements a `call` method that follows one of the following patterns:**
+* `call(self, inputs, **kwargs)` -- *Where `inputs` is a tensor or a nested structures of tensors(a list of tensors), and where `**kwargs` are non-tensor arguments(non-inputs).*
+* `call(self, inputs, training=None, **kwargs)` -- *Where `training` is a boolean indicating whether the layer should behave in training mode and inference mode.*
+* `call(self, inputs, mask=None, **kwargs)` -- *Where `mask` is a boolean mask tensor(useful for RNNs, for instance).*
+* `call(self, inputs, training=None, mask=None, **kwargs)` -- *Of course, we can have both masking and training-specific behavior at the same time.*
+###### **Additionally, if we implement the `get_config` method on our custom layer or model, the functional models we create will still be serializable and cloneable.**
