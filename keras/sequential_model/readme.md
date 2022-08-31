@@ -1,4 +1,9 @@
 ## **The Sequential Model**
+**Author:** [Abs Sayem](https://github.com/abs-sayem)<br>
+**Date Created:** 2022/07/10<br>
+**Last Modified:** 2022/08/31<br>
+**Description:** Guide to the Sequential Model
+
 ##### **Setup**
 ```
 import tensorflow as tf
