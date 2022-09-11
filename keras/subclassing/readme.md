@@ -1,7 +1,7 @@
 ## **Making new Layers and Models via Subclassing**
 **Author:** [Abs Sayem](https://github.com/abs-sayem)<br>
 **Date Created:** 2022/08/27<br>
-**Last Modified:** 2022/09/08<br>
+**Last Modified:** 2022/09/11<br>
 **Description:** Guide to making `Layers` and `Model` objects via Subclassing
 
 #### **Setup**
@@ -24,3 +24,5 @@ from tensorflow import keras
 ###### **Like `add_loss()`, there also has the `add_metric()` method- used for tracking the moving average of a quantity during training.<br>Consider a layer: a `logistic endpoint` layer - takes predictions and targets as input, computes the loss tracked via `add_loss()`, and then computes an accuracy scalar, which is tracks via `add_metric()`.**
 #### **We can Optionally Enable Serialization on our Layers**
 ###### **If we need our custom layers to be serializable as part of a `Functional Model`, we can optionally implement a `get_onfig()` method.<br>** `[NB]` **The `__init__()` method of the base `Layer` class takes some keywords arguments, in particular a `name` and a `dtypes`. It's good practice to pass these arguments to the parent class in `__Init__()` and to include them in the layer config. If we need more flexibility when deserializing the layer from its config, we can also override the `from_config()` class method.**
+#### **Privileged `training` Argument in the `call()` Method**
+###### **Some layers, in particular the `BatchNormalization` layer and the `Dropout` layer, have different behaviors during training and inference. For such layers, it is the best practice to expose `training` (boolean) argument in the `call()` method.<br>By exposing this argument in `call()`, we enable the built-in training and evaluation loops(e.g. `fit()`) to correctly use the layer in training and inference.**
