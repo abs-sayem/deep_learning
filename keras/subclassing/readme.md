@@ -35,3 +35,10 @@ from tensorflow import keras
 * *It exposes the list of its inner layers, via the `model.layers` property.*
 * *It exposes saving and serialization APIs(save(), save_weights()...)*
 ###### **Meanwhile, the `Layer` class corresponds to what we refer to in the literature as a "layer"(as in `convolutional layer`, or `recurrent layer`) or as a "block"(as in `DNN`). And the `Model` class corresponds to what is referred to in the literature as a "model"(as in `deep learning model`) or as a "network"(as in `DNN`)**
+#### **Putting all Together: an End-to-End Example**
+###### **Here's what we've learned so far:**
+* *A `Layer` encapsulate a state(created in `__init__()` or `build()`) and some computation(defined in `call()`).*
+* *Layers can be recursively nested to create new, bigger computation blocks.*
+* *Layers can create and track losses(typically regularization losses) as well as metrics, via `add_loss()` and `add_metric()`.*
+* *The outer container, the thing we want to train, is a `Model`. A `Model` is just like a `Layer`, but with added training and serialization utilities.*
+###### **We can put all of these things together into an end-to-end example: we can implement a Variational AutoEncoder(VAE) and train it on MNIST utilities.<br>Our VAE will be a subclass of `Model`, built as a nested composition of layers that subclass `Layer`. It will feature a regularization loss(KL divergence).**
