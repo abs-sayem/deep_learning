@@ -42,3 +42,5 @@ from tensorflow import keras
 * *Layers can create and track losses(typically regularization losses) as well as metrics, via `add_loss()` and `add_metric()`.*
 * *The outer container, the thing we want to train, is a `Model`. A `Model` is just like a `Layer`, but with added training and serialization utilities.*
 ###### **We can put all of these things together into an end-to-end example: we can implement a Variational AutoEncoder(VAE) and train it on MNIST utilities.<br>Our VAE will be a subclass of `Model`, built as a nested composition of layers that subclass `Layer`. It will feature a regularization loss(KL divergence).**
+#### **The `Functional API`: Beyond Object-Oriented Development**
+###### **We can also build models using the [Functional API](https://github.com/abs-sayem/deep_learning/blob/main/keras/functional_api/readme.md). Importantly, choosing one style or onother, from object-oriented or functional-api, doesn't prevent us from leveraging components written in the other style: we can always mix and match.**
