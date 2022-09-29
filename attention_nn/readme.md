@@ -6,4 +6,7 @@
 ###### **`Image -- (Encoded by CNN) --> H -- (Decoded by LSTM) --> Caption`; where H=internal vector representation, Caption=into word vector.**
 ###### **`[NB]`The problem is for captioning the image LSTM consider the entire image vector representation(H). This is not an efficient way, because- we actually caption a specific region not the whole image.<br>`How to solve this?`- We can create non-overlapping subregion of the image and focus on specific region.**
 ###### **`Image -- (Encoded by CNN) --> (h1.....hn) -- (Decoded by LSTM) --> Word vector`
-* **How to focus on Specific Region?**
+**How to focus on Specific Region?**
+* **Attention Mechanism**
+###### **An attention unit considers all the subregions and contexts as its input and outputs the weighted `arithmetic mean` of these regions.**
+> ###### **`Arithmetic Mean:` is the inner product of actual values and their probabiliies.<br>`How the Probabilities and Weights deternmine?`- using the `context`.<br>`What is context?`- Context represents everything that `RNN` has output.**
