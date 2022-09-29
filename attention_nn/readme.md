@@ -7,6 +7,13 @@
 ###### **`[NB]`The problem is, for captioning the image, LSTM consider the entire image vector representation(H). This is not an efficient way, because- we actually caption a specific region not the whole image.<br>`How to solve this?`- We can create non-overlapping subregion of the image and focus on specific region.**
 ###### **`Image -- (Encoded by CNN) --> (h1.....hn) -- (Decoded by LSTM) --> Word vector`**
 **How to focus on Specific Region?**
-* **Attention Mechanism**
-###### **An attention unit considers all the subregions and contexts as its input and outputs the weighted `arithmetic mean` of these regions.**
-###### **`What is Arithmetic Mean?`- the inner product of actual values and their probabiliies.<br>`How the Probabilities and Weights deternmine?`- using the `context`.<br>`What is context?`- Context represents everything that `RNN` has output.**
+**Attention Mechanism**
+###### **An attention unit considers all the subregions and contexts as its input and outputs the weighted `arithmetic mean` of these regions.<br>**`What is Arithmetic Mean?`- the inner product of actual values and their probabiliies.<br>`How the Probabilities and Weights deternmine?`- using the `context`.<br>`What is context?`- Context represents everything that `RNN` has output.**
+**Attention Unit**
+###### **We have- inputs(y) from CNN and context(C) from RNN. These inputs then applied to the weights which constitute the learn about parameters of the attention unit. That means the weight vectors update as we get more training data.`??`**
+###### **`m_1 = tanh(y_1.w_1 + C.w_c)`**
+###### **the `tanh` activation fn scales the values between (-1 to 1), which leads to a much smoother choice of regions-of-interest within each sunregion.`???`**
+###### **`[NB]` We can choose regions-of-interest by applying a simple dot product of regions(y) and context(c). The higher the product, the more similar they are.<br> The difference between using the simple dot product and tanh function would be granuality(level of details in a set of data). Tanh is more fine-grained(involving great attention of details) with less choopy(having a disjoined or jerky quality) and smoother for subregion choice.**
+`[Pic]`
+###### **These m's(m_1.........m_n) are then pass through a softmax fn which outputs them as probabilities(s_1.........s_n).<br>Finally, we take the inner product of probability vector(S) and subregions(y) to get the final output(Z), the relevant region of the entire image.**
+> **`Understand the probabilities as correspond to the relevance of the subregions(y) given the context(C)``???`**
