@@ -27,3 +27,4 @@
 **2. Hard Attention:**  *[The main relevant region(z) consist of only one of the regions(y)]*
 ###### **Instead of taking weighted arithmetic mean of all regions, hard attention only consider one region randomly. So, hard attention is a `stochastic` process.<br>What `stochastic`(Randomness) mean?- Performing an action(a), on a state(S) may lead to different states every time.**
 > ###### **`(S)-----(a)------>(S'/S''/S''')`    Holds different probabilities than the same everytime.**
+###### **`What makes Hard Attention stochastic?-` is that a region(y_i) is chosen randomly with the probability(s_i). The more relevant a region(y_i), as-a-whole is relevant to the context, then grater the chance it is chosen for for determinig the next word of the caption.**
