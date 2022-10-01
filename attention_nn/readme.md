@@ -35,5 +35,5 @@
 * ###### **Performance varies on dataset.**
 * ###### **Hard attention perform slightly better while soft-attention perform decently well.**
 **Application**
-* ###### **`Neural Machine Translation` (translate one language to another) - Words are fed in a sequence to an encoder one after another and the sentence in terminated by specific input word or symbol. Once complete, the special signal initiates the decoder phase where the translated words are generated.**
+* ###### **`Neural Machine Translation (translate one language to another)` - Words are fed in a sequence to an encoder one after another and the sentence in terminated by specific input word or symbol. Once complete, the special signal initiates the decoder phase where the translated words are generated.**
 * ###### **`Teaching Machines to Read`**
