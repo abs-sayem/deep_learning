@@ -19,11 +19,11 @@
 > **`Understand the probabilities as correspond to the relevance of the subregions(y) given the context(C).``???`<br>**
 
 **Types of Attention**<br>
-**1. Soft Attention:**  *The main relevant region(z) consists of different parts of different sub-regions(y).*
+**1. Soft Attention:**  *[The main relevant region(z) consists of different parts of different sub-regions(y)]*
 > ###### **`Z = sum(s_n.y_n)`    where, s=probabilities of the sub-regions(y).
 ###### **Soft Attention is deterministic. What "deterministic" means?- A system is said to be deterministic if the application of an action(a), on a state(s), always leads to te same state(s')**
 > ###### **`(S)-----(a)------>(S');`    Changes the coordinates from `S` to `S'` but the state doesn't.**
 ###### **For example, Suppose, you face to the forward standing in the corner of a room and you then one step ahead to the forward stil facing to the forward. That changes your location(coordinates) but your state remains same.**
-**2. Hard Attention:**  *The main relevant region(z) consist of only one of the regions*
+**2. Hard Attention:**  *[The main relevant region(z) consist of only one of the regions(y)]*
 ###### **Instead of taking weighted arithmetic mean of all regions, hard attention only consider one region randomly. So, hard attention is a `stochastic` process.<br>What `stochastic`(Randomness) mean?- Performing an action(a), on a state(S) may lead to different states every time.**
 > ###### **`(S)-----(a)------>(S'/S''/S''')`    Holds different probabilities than the same everytime.**
