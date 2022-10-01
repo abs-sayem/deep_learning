@@ -17,7 +17,8 @@
 `[Pic]`
 ###### **These m's(m_1.........m_n) are then pass through a softmax fn which outputs them as probabilities(s_1.........s_n).<br>Finally, we take the inner product of probability vector(S) and subregions(y) to get the final output(Z), the relevant region of the entire image.**
 > **`Understand the probabilities as correspond to the relevance of the subregions(y) given the context(C).``???`<br>**
-**Types of Attention**
+
+**Types of Attention**<br>
 **`1. Soft Attention`** *The main relevant region(z) consists of different parts of different sub-regions(y).*
 ###### **`Z = sum(s_n.y_n)`    where, s=probabilities of the sub-regions(y).
 ###### **Soft Attention is deterministic. What "deterministic" means?- A system is said to be deterministic if the application of an action(a), on a state(s), always leads to te same state(s')**
