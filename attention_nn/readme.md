@@ -17,7 +17,7 @@
 `[Pic]`
 ###### **These m's(m_1.........m_n) are then pass through a softmax fn which outputs them as probabilities(s_1.........s_n).<br>Finally, we take the inner product of probability vector(S) and subregions(y) to get the final output(Z), the relevant region of the entire image.**
 > **`Understand the probabilities as correspond to the relevance of the subregions(y) given the context(C).``???`<br>**
-
+`
 **Types of Attention**<br>
 **1. Soft Attention:**  *[The main relevant region(z) consists of different parts of different sub-regions(y)]*
 > ###### **`Z = sum(s_n.y_n)`    where, s=probabilities of the sub-regions(y).
@@ -28,3 +28,4 @@
 ###### **Instead of taking weighted arithmetic mean of all regions, hard attention only consider one region randomly. So, hard attention is a `stochastic` process.<br>What `stochastic`(Randomness) mean?- Performing an action(a), on a state(S) may lead to different states every time.**
 > ###### **`(S)-----(a)------>(S'/S''/S''')`    Holds different probabilities than the same everytime.**
 ###### **`What makes Hard Attention stochastic?-` is that a region(y_i) is chosen randomly with the probability(s_i). The more relevant a region(y_i), as-a-whole is relevant to the context, then grater the chance it is chosen for for determinig the next word of the caption.**
+`
