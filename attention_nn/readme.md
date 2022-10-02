@@ -17,7 +17,7 @@
 **But how does it exactly decide the region or regions to consider?**
 
 **Attention Mechanism**
-###### **An attention unit considers all the subregions(H) and contexts(C) as its input and outputs the weighted `arithmetic mean`(Z) of these regions.<br><img src="images/4.PNG" height="300" width="1000"><br>**`What is Arithmetic Mean?`- the inner product of actual values and their probabiliies.<br><img src="images/arithmatic_mean.PNG"><br>`How the Probabilities and Weights deternmine?`- using the `context`(C).<br>`What is context?`- Context represents everything that `RNN` has output.**<br><img src="images/cprob_weigh.PNG" height="300" width="1000">
+###### **An attention unit considers all the subregions(H) and contexts(C) as its input and outputs the weighted `arithmetic mean`(Z) of these regions.<br><img src="images/4.PNG" height="300" width="1000"><br>**`What is Arithmetic Mean?`- the inner product of actual values and their probabiliies.<br><img src="images/arithmatic_mean.PNG"><br>`How the Probabilities and Weights deternmine?`- using the `context`(C). `What is context?`- Context represents everything that `RNN` has output.**<br><img src="images/prob_weigh.PNG" height="300" width="1000">
 **Attention Unit**
 ###### **We have- inputs(y) from CNN and context(C) from RNN. These inputs then applied to the weights which constitute the learn about parameters of the attention unit. That means the weight vectors update as we get more training data.`??`**
 > ###### **`m_1 = tanh(y_1.w_1 + C.w_c)`**
