@@ -12,14 +12,12 @@
 <img src="images/1.PNG" height="300" width="1000">
 
 ###### **`How to solve this?`- We can create non-overlapping subregion of the image and focus on specific region. When decoder decides on a caption for every word it only looks at specific regions of the image. This leads to a more accurate description.**
-> ###### **`Image -- (Encoded by CNN) --> (h_1.....h_n) -- (Decoded by LSTM) --> Word vector`**
-
-<img src="images/2.PNG" height="300" width="1000">
+> ###### **`Image -- (Encoded by CNN) --> (h_1.....h_n) -- (Decoded by LSTM) --> Word vector`**<br><img src="images/2.PNG" height="300" width="1000">
 
 **But how does it exactly decide the region or regions to consider?**
 
 **Attention Mechanism**
-###### **An attention unit considers all the subregions and contexts as its input and outputs the weighted `arithmetic mean` of these regions.<br>**`What is Arithmetic Mean?`- the inner product of actual values and their probabiliies.<br>`How the Probabilities and Weights deternmine?`- using the `context`.<br>`What is context?`- Context represents everything that `RNN` has output.**
+###### **An attention unit considers all the subregions(H) and contexts(C) as its input and outputs the weighted `arithmetic mean`(Z) of these regions.<br><img src="images/4.PNG" height="300" width="1000"><br>**`What is Arithmetic Mean?`- the inner product of actual values and their probabiliies.<br><img src="images/arithmatic_mean.PNG"><br>`How the Probabilities and Weights deternmine?`- using the `context`(C).<br>`What is context?`- Context represents everything that `RNN` has output.**<br><img src="images/cprob_weigh.PNG" height="300" width="1000">
 **Attention Unit**
 ###### **We have- inputs(y) from CNN and context(C) from RNN. These inputs then applied to the weights which constitute the learn about parameters of the attention unit. That means the weight vectors update as we get more training data.`??`**
 > ###### **`m_1 = tanh(y_1.w_1 + C.w_c)`**
