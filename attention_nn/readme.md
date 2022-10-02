@@ -17,6 +17,7 @@
 <img src="images/2.PNG" height="300" width="1000">
 
 **But how does it exactly decide the region or regions to consider?**
+
 **Attention Mechanism**
 ###### **An attention unit considers all the subregions and contexts as its input and outputs the weighted `arithmetic mean` of these regions.<br>**`What is Arithmetic Mean?`- the inner product of actual values and their probabiliies.<br>`How the Probabilities and Weights deternmine?`- using the `context`.<br>`What is context?`- Context represents everything that `RNN` has output.**
 **Attention Unit**
