@@ -2,8 +2,8 @@
 **What is Attention?**
 ###### **Suppose I give you the `Deep Learning with Python` book and ask you to tell me about `neural style transfer` from the book. What would you do? - either start reading the whole book or check the index to find out where "neural style transfer" is talked about, go there and read the related portion. The second way is more precise because you draw the attention in the region of interest.**
 **Understand Attention Mechanism**
-###### **To understand attention mechanism, here we will consider `Image Captioning through Attention`. How we can caption an image?- The basic idea is- We will `Encode` the input image by a `CNN` then `Decode` the encoded representation by a `RNN(say-LSTM)` into word vector(ie. Caption).**
-> ###### **`Image -- (Encoded by CNN) --> H -- (Decoded by LSTM) --> Caption`   where H=internal vector representation, Caption=into word vector.**
+###### **To understand attention mechanism, here we will consider `Image Captioning through Attention`. How we can caption an image?- The basic idea consists of 2 steps: First `Encode` the input image in an internal vector representation(H) using a `CNN` and then `Decode` the encoded representation(H) into word vectors that signifies the caption using by a `RNN(say-LSTM)`.**
+> ###### **`Image -- (Encoded by CNN) --> H -- (Decoded by LSTM) --> Caption`**
 
 <img src="images/0.PNG" height="300" width="1000">
 
