@@ -28,12 +28,12 @@
 > **`Understand the probabilities as correspond to the relevance of the subregions(y) given the context(C).``???`<br>**
 
 **Types of Attention**<br>
-**1. Soft Attention:**  *[The main relevant region(z) consists of different parts of different sub-regions(y)]*
+**1. Soft Attention:**  *[The main relevant region(z) consists of different parts of different sub-regions(y)]*<br><img src="images/soft_att.PNG">
 > ###### **`Z = sum(s_n.y_n)`    where, s=probabilities of the sub-regions(y).
 ###### **Soft Attention is deterministic. What "deterministic" means?- A system is said to be deterministic if the application of an action(a), on a state(s), always leads to te same state(s')**
 > ###### **`(S)-----(a)------>(S');`    Changes the coordinates from `S` to `S'` but the state doesn't.**
-###### **For example, Suppose, you face to the forward standing in the corner of a room and you then one step ahead to the forward stil facing to the forward. That changes your location(coordinates) but your state remains same.**
-**2. Hard Attention:**  *[The main relevant region(z) consist of only one of the regions(y)]*
+###### **For example, Suppose, you face to the forward standing in the corner of a room and you then one step ahead to the forward stil facing to the forward. That changes your location(coordinates) but your state remains same.**<br><img src="images/14.PNG" height="300" width="1000">
+**2. Hard Attention:**  *[The main relevant region(z) consist of only one of the regions(y)]*<br><img src="images/hard_att.PNG">
 ###### **Instead of taking weighted arithmetic mean of all regions, hard attention only consider one region randomly. So, hard attention is a `stochastic` process.<br>What `stochastic`(Randomness) mean?- Performing an action(a), on a state(S) may lead to different states every time.**
 > ###### **`(S)-----(a)------>(S'/S''/S''')`    Holds different probabilities than the same everytime.**
 ###### **`What makes Hard Attention stochastic?-` is that a region(y_i) is chosen randomly with the probability(s_i). The more relevant a region(y_i), as-a-whole is relevant to the context, then grater the chance it is chosen for for determinig the next word of the caption.**
