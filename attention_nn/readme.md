@@ -21,10 +21,10 @@
 **Attention Unit**
 ###### **We have- inputs(y) from CNN and context(C) from RNN. These inputs then applied to the weights which constitute the learn about parameters of the attention unit. This means the weight vectors update as we get more training data.`??`**<br><img src="images/7.PNG" height="300" width="1000">
 > ###### **`m_1 = tanh(y_1.w_1 + C.w_c)`**
-###### **the `tanh` activation fn scales the values between (-1 to 1), which leads to a much smoother choice of regions-of-interest within each sunregion.`???`**
-###### **`[NB]` We can choose regions-of-interest by applying a simple dot product of regions(y) and context(c). The higher the product, the more similar they are.<br> The difference between using the simple dot product and tanh function would be granuality(level of details in a set of data). Tanh is more fine-grained(involving great attention of details) with less choopy(having a disjoined or jerky quality) and smoother for subregion choice.**
-`[Pic]`
-###### **These m's(m_1.........m_n) are then pass through a softmax fn which outputs them as probabilities(s_1.........s_n).<br>Finally, we take the inner product of probability vector(S) and subregions(y) to get the final output(Z), the relevant region of the entire image.**
+###### **the `tanh` activation fn scales the values between (-1 to 1), which leads to a much smoother choice of regions-of-interest within each sub-region.`???`**<br><img src="images/10.PNG" height="300" width="1000">
+###### **`[NB]` We don't necessarily have to apply a tanh function, we only need to ensure the regions that we output are relevant to the context. We can choose regions-of-interest by applying a simple dot product of regions(y) and context(c).<br><img src="images/11.PNG" height="300" width="1000"><br>The higher the product, the more similar they are. The difference between using the simple dot product and tanh function would be granuality(level of details in a set of data). Tanh is more fine-grained(involving great attention of details) with less choopy(having a disjoined or jerky quality) and smoother for subregion choice.**
+
+###### **These m's(m_1.........m_n) are then pass through a softmax fn which outputs them as probabilities(s_1.........s_n).<br>Finally, we take the inner product of probability vector(S) and subregions(y) to get the final output(Z), the relevant region of the entire image.**<br><img src="images/11.1.PNG" height="300" width="1000">
 > **`Understand the probabilities as correspond to the relevance of the subregions(y) given the context(C).``???`<br>**
 
 **Types of Attention**<br>
