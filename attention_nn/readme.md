@@ -33,13 +33,14 @@
 ###### **Soft Attention is deterministic. What "deterministic" means?- A system is said to be deterministic if the application of an action(a), on a state(s), always leads to te same state(s')**
 > ###### **`(S)-----(a)------>(S');`    Changes the coordinates from `S` to `S'` but the state doesn't.**
 ###### **For example, Suppose, you face to the forward standing in the corner of a room and you then one step ahead to the forward stil facing to the forward. That changes your location(coordinates) but your state remains same.**<br><img src="images/14.PNG" height="300" width="1000">
-**2. Hard Attention:**  *[The main relevant region(z) consist of only one of the regions(y)]*<br><img src="images/hard_att.PNG">
-###### **Instead of taking weighted arithmetic mean of all regions, hard attention only consider one region randomly. So, hard attention is a `stochastic` process.<br>What `stochastic`(Randomness) mean?- Performing an action(a), on a state(S) may lead to different states every time.**
-> ###### **`(S)-----(a)------>(S'/S''/S''')`    Holds different probabilities than the same everytime.**
-###### **`What makes Hard Attention stochastic?-` is that a region(y_i) is chosen randomly with the probability(s_i). The more relevant a region(y_i), as-a-whole is relevant to the context, then grater the chance it is chosen for for determinig the next word of the caption.**
 
 **Lets apply the same concept of soft-attention**
-###### **Initially, we have an image split into a number of regions(y_i) with an input context(C). This is our initial state. On the application of soft detection we end up with a localized image representing the new state(S'). These regions of interest are determined from (Z). The output will always be the same regardless of how many times we execute self-attention with these same inputs. This is because we consider all the regions(Y) anyways to determine (Z).**
+###### **Initially, we have an image split into a number of regions(y_i) with an input context(C). This is our initial state. On the application of soft detection we end up with a localized image representing the new state(S'). These regions of interest are determined from (Z). The output will always be the same regardless of how many times we execute self-attention with these same inputs. This is because we consider all the regions(Y) anyways to determine (Z).**<br><img src="images/15.PNG" height="300" width="1000">
+**2. Hard Attention:**  *[The main relevant region(z) consist of only one of the regions(y)]*<br><img src="images/hard_att.PNG">
+###### **Instead of taking weighted arithmetic mean of all regions, hard attention only consider one region randomly. So, hard attention is a `stochastic` process.<br>What `stochastic`(Randomness) mean?- Performing an action(a), on a state(S) may lead to different states every time.**<br><img src="images/16.PNG" height="300" width="1000">
+> ###### **`(S)-----(a)------>(S'/S''/S''')`    Holds different probabilities than the same everytime.**
+###### **`What makes Hard Attention stochastic?-` is that a region(y_i) is chosen randomly with the probability(s_i). The more relevant a region(y_i), as-a-whole is relevant to the context, then grater the chance it is chosen for for determinig the next word of the caption.**<br><img src="images/17.PNG" height="300" width="1000">
+
 **Performance**
 * ###### **Performance varies on dataset.**
 * ###### **Hard attention perform slightly better while soft-attention perform decently well.**
