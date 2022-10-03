@@ -2,25 +2,19 @@
 **What is Attention?**
 ###### **Suppose I give you the `Deep Learning with Python` book and ask you to tell me about `neural style transfer` from the book. What would you do? - either start reading the whole book or check the index to find out where "neural style transfer" is talked about, go there and read the related portion. The second way is more precise because you draw the attention in the region of interest.**
 **Understand Attention Mechanism**
-###### **To understand attention mechanism, here we will consider `Image Captioning through Attention`. How we can caption an image?- The basic idea consists of 2 steps: First `Encode` the input image in an internal vector representation(H) using a `CNN` and then `Decode` the encoded representation(H) into word vectors that signifies the caption using a `RNN(say-LSTM)`.**
-> ###### **`Image -- (Encoded by CNN) --> H -- (Decoded by LSTM) --> Caption`**
+###### **To understand attention mechanism, here we will consider `Image Captioning through Attention`. How we can caption an image?- The basic idea consists of 2 steps: First `Encode` the input image in an internal vector representation(H) using a `CNN` and then `Decode` the encoded representation(H) into word vectors that signifies the caption using a `RNN(say-LSTM)`.**<br><img src="images/0.PNG" height="300" width="1000">
 
-<img src="images/0.PNG" height="300" width="1000">
+###### **`[NB]`The problem is, for captioning the image, LSTM consider the entire image vector representation(H) every time. This is not an efficient way, because- we generally caption a specific region not the whole image.**<br><img src="images/1.PNG" height="300" width="1000">
 
-###### **`[NB]`The problem is, for captioning the image, LSTM consider the entire image vector representation(H) every time. This is not an efficient way, because- we generally caption a specific region not the whole image.**
+###### **`How to solve this?`- We can create non-overlapping subregion of the image and focus on specific region. When decoder decides on a caption for every word it only looks at specific regions of the image. This leads to a more accurate description.**<br><img src="images/2.PNG" height="300" width="1000">
 
-<img src="images/1.PNG" height="300" width="1000">
-
-###### **`How to solve this?`- We can create non-overlapping subregion of the image and focus on specific region. When decoder decides on a caption for every word it only looks at specific regions of the image. This leads to a more accurate description.**
-> ###### **`Image -- (Encoded by CNN) --> (h_1.....h_n) -- (Decoded by LSTM) --> Word vector`**<br><img src="images/2.PNG" height="300" width="1000">
-
-**But how does it exactly decide the region or regions to consider?**
+***[But how does it exactly decide the region or regions to consider?]**
 
 **Attention Mechanism**
-###### **An attention unit considers all the subregions(H) and contexts(C) as its input and outputs the weighted `arithmetic mean`(Z) of these regions.<br><img src="images/4.PNG" height="300" width="1000"><br>**`What is Arithmetic Mean?`- the inner product of actual values and their probabiliies.<br><img src="images/arithmatic_mean.PNG"><br>`How the Probabilities and Weights deternmine?`- using the `context`(C). `What is context?`- Context represents everything that `RNN` has output.**<br><img src="images/prob_weigh.PNG" height="300" width="1000">
+###### **An attention unit considers all the subregions(h_1.....h_n) and contexts(C) as its input and outputs the weighted `arithmetic mean`(z_1.....z_n) of these regions.<br><img src="images/4.PNG" height="300" width="1000"><br>**`What is Arithmetic Mean?`- the inner product of actual values and their probabiliies.<br><img src="images/arithmatic_mean.PNG"><br>`How the Probabilities and Weights deternmine?`- using the `context`(C). `What is context?`- Context represents everything that `RNN` has output.**<br><img src="images/prob_weigh.PNG" height="300" width="1000">
 **Attention Unit**
-###### **We have- inputs(y) from CNN and context(C) from RNN. These inputs then applied to the weights which constitute the learn about parameters of the attention unit. This means the weight vectors update as we get more training data.`??`**<br><img src="images/7.PNG" height="300" width="1000">
-> ###### **`m_1 = tanh(y_1.w_1 + C.w_c)`**
+###### **We have- inputs(y_1.....y_n) from CNN and context(C) from RNN. These inputs then applied to the weights which constitute(build) the learn about parameters of the attention unit. This means the weight vectors update as we get more training data.`??`**<br><img src="images/7.PNG" height="300" width="1000">
+
 ###### **the `tanh` activation fn scales the values between (-1 to 1), which leads to a much smoother choice of regions-of-interest within each sub-region.`???`**<br><img src="images/10.PNG" height="300" width="1000">
 ###### **`[NB]` We don't necessarily have to apply a tanh function, we only need to ensure the regions that we output are relevant to the context. We can choose regions-of-interest by applying a simple dot product of regions(y) and context(c).<br><img src="images/11.PNG" height="300" width="1000"><br>The higher the product, the more similar they are. The difference between using the simple dot product and tanh function would be granuality(level of details in a set of data). Tanh is more fine-grained(involving great attention of details) with less choopy(having a disjoined or jerky quality) and smoother for subregion choice.**
 
@@ -29,7 +23,7 @@
 
 **Types of Attention**<br> 
 **1. Soft Attention:**  *[The main relevant region(z) consists of different parts of different sub-regions(y)]*<br><img src="images/soft_att.PNG">
-> ###### **`Z = sum(s_n.y_n)`    where, s=probabilities of the sub-regions(y).
+
 ###### **Soft Attention is deterministic. What "deterministic" means?- A system is said to be deterministic if the application of an action(a), on a state(s), always leads to te same state(s')<br>For example, Suppose, you face to the forward standing in the corner of a room and you then one step ahead 5 feet to the forward. Now you have a new state with coordinates(5,0) and stil facing to the forward. That changes your location(coordinates) but your state remains same. Every time you try this, the state will be same, hence it is deterministic.**
 <img src="images/14.PNG" height="300" width="1000">
 
