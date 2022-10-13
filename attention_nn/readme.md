@@ -4,7 +4,7 @@
 **Understand Attention Mechanism**
 ###### **To understand attention mechanism, here we will consider `Image Captioning through Attention`. How we can caption an image?- The basic idea consists of 2 steps: First `Encode` the input image in an internal vector representation(H) using a `CNN` and then `Decode` the encoded representation(H) into word vectors that signifies the caption using a `RNN(say-LSTM)`.**<br><img src="images/0.PNG" height="300" width="1000">
 
-###### **`[NB]`The problem is, for captioning the image, LSTM consider the entire image vector representation(H) every time. This is not an efficient way, because- we generally caption a specific region not the whole image.**<br><img src="images/1.PNG" height="300" width="1000">
+###### **`[NB]`The problem is, for captioning the image, LSTM consider the entire image vector representation(H) every time. This is not an efficient way, because- as usually we generate different words of a caption looking at different and specific parts of an image. We generally caption a specific region not the whole image.**<br><img src="images/1.PNG" height="300" width="1000">
 
 ###### **`How to solve this?`- We can create non-overlapping subregion of the image and focus on specific region. When decoder decides on a caption for every word it only looks at specific regions of the image. This leads to a more accurate description.**<br><img src="images/2.PNG" height="300" width="1000">
 
