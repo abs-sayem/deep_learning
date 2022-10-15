@@ -34,7 +34,7 @@
 ###### **`What makes Hard Attention stochastic?-` is that a region(y_i) is chosen randomly with the probability(s_i). The more relevant a region(y_i), as-a-whole is relevant to the context, then grater the chance it is chosen for determinig the next word of the caption.**<br><img src="images/17.PNG" height="300" width="1000">
 
 **Attention(Cont..)**
-###### **Using the word captions output until now by the RNN, that is (H), along the current regions of interest in an image determined by the attention mechanism, the RNN now tries to predict the next word in the caption.**<br><img src="images/18.PNG" height="300" width="1000">
+###### **Using the word captions output until now by the RNN, that is (H), along the current regions of interest in an image, determined by the attention mechanism, the RNN now tries to predict the next word in the caption.**<br><img src="images/18.PNG" height="300" width="1000">
 
 **Performance**
 * ###### **Performance varies on dataset.**
